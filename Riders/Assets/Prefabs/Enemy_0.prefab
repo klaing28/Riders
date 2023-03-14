@@ -152,7 +152,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   cooldownTime: 1
   projectileSpeed: 1
-  projectile: {fileID: 9090767510647361483, guid: 338a0d1ec4e3af94db3c40ae42b48e72,
+  projectile: {fileID: 9059558423608465963, guid: 338a0d1ec4e3af94db3c40ae42b48e72,
     type: 3}
 --- !u!1 &444811529660634920
 GameObject:
