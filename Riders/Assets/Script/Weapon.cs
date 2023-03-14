@@ -6,34 +6,10 @@ public class Weapon : Collidable
 {
     public int damagePoint = 1;
     public float pushForce = 2.0f;
+    public float aoe;
 
     
-    private SpriteRenderer spriteRenderer;
-
-    private Animator anim;
-    private float cooldown = 0.5f;
-    private float lastSwing;
-
-    protected override void Start()
-    {
-        base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
-        if(Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if(Time.time - lastSwing > cooldown)
-            {
-                lastSwing = Time.time;
-                Swing();
-            }
-        }
-    }
+  
 
     protected override void OnCollide(Collider2D coll)
     {
@@ -52,12 +28,13 @@ public class Weapon : Collidable
             }
             
         }
-        
+        if (coll.name != "Player")
+        {
+            if (coll.tag == "Combat" || coll.tag == "Wall")
+            {
+                Destroy(gameObject);
+            }
+        }
     }
-
-    private void Swing()
-    {
-        anim.SetTrigger("Swing");
-        
-    }
+    
 }

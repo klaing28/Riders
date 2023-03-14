@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Combat
   - NonCombatNPC
+  - Wall
   layers:
   - Default
   - TransparentFX

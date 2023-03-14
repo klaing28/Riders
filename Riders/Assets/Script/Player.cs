@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Player : Mover
 {
-
+    
     public Text souls;
     public Text hp;
 
@@ -16,7 +16,7 @@ public class Player : Mover
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-
+       
         UpdateMotor(new Vector3(x, y, 0));
         souls.text = "Souls:  " + GameManager.instance.pesos.ToString();
         hp.text = "Hp:  " + hitpoint.ToString();

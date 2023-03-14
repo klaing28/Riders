@@ -13,9 +13,12 @@ public class Enemy : Mover
     private bool collidingWithPlayer;
     private Transform playerTransform;
     private Vector3 startingPosition;
-
+    private float cooldownTimeLeft;
     public ContactFilter2D filter;
     private BoxCollider2D hitbox;
+    public float cooldownTime;
+    public float projectileSpeed;
+    public GameObject projectile;
     private Collider2D[] hits = new Collider2D[10];
     //public Text souls;
 
@@ -31,7 +34,12 @@ public class Enemy : Mover
 
     private void FixedUpdate()
     {
-        if(Vector3.Distance(playerTransform.position,startingPosition)<chaseLength )
+        if (cooldownTimeLeft > 0)
+        {
+            cooldownTimeLeft -= Time.deltaTime;
+        }
+
+        if (Vector3.Distance(playerTransform.position,startingPosition)<chaseLength )
         {
             if (Vector3.Distance(playerTransform.position, startingPosition) < triggerLength)
                 chasing = true;
@@ -47,8 +55,23 @@ public class Enemy : Mover
                 {
                     UpdateMotor(-(playerTransform.position - transform.position).normalized*0.5f);
                 }
-               
 
+
+                if (cooldownTimeLeft < 0.1)
+                {
+                    
+                    
+                        GameObject spell = Instantiate(projectile, transform.position, Quaternion.identity);
+                        Vector2 x = playerTransform.position;
+                        Vector2 myPos = transform.position;
+                        Vector2 direction = (x - myPos).normalized;
+                        spell.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+                        cooldownTimeLeft = cooldownTime;
+                    
+
+                }
+                
+                
 
             }
             else

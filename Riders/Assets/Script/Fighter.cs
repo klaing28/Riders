@@ -7,6 +7,9 @@ public class Fighter : MonoBehaviour
     public static Fighter instance;
     public int hitpoint=10;
     public int maxHitpoint = 10;
+    public float maxMana = 100f;
+    public float currentMana;
+    public float manaRechargeRate = 2f;
     public float pushRecoverySpeed = 0.2f;
 
     protected float immuneTime = 1f;
